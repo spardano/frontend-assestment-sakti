@@ -1,0 +1,14 @@
+export const provinces = [
+  {
+    "id": 1,
+    "name": "Kepulauan Riau"
+  },
+  {
+    "id": 2,
+    "name": "DKI Jakarta"
+  },
+  {
+    "id": 3,
+    "name": "Bali"
+  }
+]
