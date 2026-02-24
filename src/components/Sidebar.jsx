@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Form } from "react-router-dom";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { MdDomain, MdApartment, MdLocationOn } from "react-icons/md";
 
@@ -8,16 +8,6 @@ export default function Sidebar({
   districts,
   selected
 }) {
-
-  /* Handle perubahan filter dengan mengupdate query params di URL 
-    dan menggunakan navigate agar tidak reload halaman */
-  const navigate = useNavigate();
-  const handleChange = (e) => {
-    const formData = new FormData(e.currentTarget.form);
-    const params = new URLSearchParams(formData);
-    navigate(`/?${params.toString()}`);
-  };
-  
   return (
     <aside className="w-80 bg-white p-6 border-r">
       <div className="flex items-center gap-3 mb-12">
@@ -25,7 +15,7 @@ export default function Sidebar({
         <h1 className="text-xl font-bold">Frontend Assessment</h1>
       </div>
       
-      <form className="space-y-8">
+      <Form method="get" className="space-y-8">
         <div>
           <p className="text-xs font-semibold text-gray-500 uppercase mb-4">Filter Wilayah</p>
         </div>
@@ -39,7 +29,7 @@ export default function Sidebar({
               name="provinces"
               defaultValue={selected.provinceId || ""}
               className="w-full border border-gray-300 p-3 pl-10 rounded-xl focus:outline-none focus:border-blue-500"
-              onChange={handleChange}
+              onChange={(e) => e.currentTarget.form.submit()}
             >
               <option value="">Pilih Provinsi</option>
               {provinces.map(p => (
@@ -61,7 +51,7 @@ export default function Sidebar({
               defaultValue={selected.regencyId || ""}
               disabled={!selected.provinceId}
               className="w-full border border-gray-300 p-3 pl-10 rounded-xl focus:outline-none focus:border-blue-500 disabled:bg-gray-100 disabled:text-gray-500"
-              onChange={handleChange}
+              onChange={(e) => e.currentTarget.form.submit()}
             >
               <option value="">Pilih Kota</option>
               {regencies.map(r => (
@@ -83,7 +73,7 @@ export default function Sidebar({
               defaultValue={selected.districtId || ""}
               disabled={!selected.regencyId}
               className="w-full border border-gray-300 p-3 pl-10 rounded-xl focus:outline-none focus:border-blue-500 disabled:bg-gray-100 disabled:text-gray-500"
-              onChange={handleChange}
+              onChange={(e) => e.currentTarget.form.submit()}
             >
               <option value="">Pilih Kecamatan</option>
               {districts.map(d => (
@@ -103,7 +93,7 @@ export default function Sidebar({
           Reset
         </a>
 
-      </form>
+      </Form>
     </aside>
   );
 }
