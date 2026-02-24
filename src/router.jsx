@@ -44,5 +44,5 @@ export const router = createBrowserRouter([
     }
   }
 ], {
-  basename: "/frontend-assestment-sakti", // Add your repo name here
+  basename: "/frontend-assessment-sakti/", // Add your repo name here
 });
